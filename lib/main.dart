@@ -1,3 +1,6 @@
+import 'package:dilov_app/src/app.dart';
+import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
+import 'package:dilov_app/src/theme_manager/theme_data_manager.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,16 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Image.asset('assets/images/hero.png'),
-        ),
-      ),
-    );
+    return const AppScreen();
   }
 }
