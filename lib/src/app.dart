@@ -1,3 +1,4 @@
+import 'package:dilov_app/src/features/auth/presentation/sign_up_screen.dart';
 import 'package:dilov_app/src/theme_manager/theme_data_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -11,14 +12,10 @@ class AppScreen extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: getApplicationThemeData(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text("Hello World"),
-        ),
-      ),
+      initialRoute: SignUpScreen.routeName,
+      routes: {
+        SignUpScreen.routeName: (context) => const SignUpScreen(),
+      },
     );
   }
 }

@@ -1,6 +1,4 @@
 import 'package:dilov_app/src/app.dart';
-import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
-import 'package:dilov_app/src/theme_manager/theme_data_manager.dart';
 import 'package:flutter/material.dart';
 
 void main() {
