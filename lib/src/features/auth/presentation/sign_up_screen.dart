@@ -68,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
               ),
               const SizedBox(
-                height: AppSize.s20,
+                height: AppSize.s16,
               ),
               CustomTextButtonWidget(
                 title: "Sign In to My Account",

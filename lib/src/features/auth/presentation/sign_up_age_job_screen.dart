@@ -1,7 +1,7 @@
 import 'package:dilov_app/src/common_widgets/banner_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_button_widget.dart';
-import 'package:dilov_app/src/common_widgets/custom_text_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_text_field_widget.dart';
+import 'package:dilov_app/src/features/auth/presentation/sign_up_upload_photo_screen.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -47,11 +47,16 @@ class _SignUpAgeJobScreenState extends State<SignUpAgeJobScreen> {
                 controller: ageController,
               ),
               const SizedBox(
-                height: 117.0,
+                height: 107.0,
               ),
               CustomButtonWidget(
                 title: 'Continue Sign Up',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    SignUpUploadPhotoScreen.routeName,
+                  );
+                },
               ),
             ],
           ),
