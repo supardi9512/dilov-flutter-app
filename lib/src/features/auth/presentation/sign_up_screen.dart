@@ -2,8 +2,6 @@ import 'package:dilov_app/src/common_widgets/banner_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_text_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_text_field_widget.dart';
-import 'package:dilov_app/src/common_widgets/hero_widget.dart';
-import 'package:dilov_app/src/common_widgets/logo_and_tagline_widget.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
 
