@@ -10,10 +10,10 @@ class HeroWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 215,
-      margin: EdgeInsets.symmetric(vertical: AppMargin.m30),
+      margin: const EdgeInsets.symmetric(vertical: AppMargin.m30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s18),
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage('${AssetImageManager.assetPath}/hero.png'),
           fit: BoxFit.cover,
         ),

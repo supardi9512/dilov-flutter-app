@@ -1,4 +1,5 @@
 import 'package:dilov_app/src/common_widgets/logo_widget.dart';
+import 'package:dilov_app/src/features/likes_you/presentation/people_loved_screen.dart';
 import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -24,13 +25,21 @@ class ExplorePeopleAppBarWidget extends StatelessWidget {
           ),
         ),
         const LogoWidget(),
-        Container(
-          width: 24.0,
-          height: 24.0,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                '${AssetImageManager.assetPath}/icon-notification.png',
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              PeopleLovedScreen.routeName,
+            );
+          },
+          child: Container(
+            width: 24.0,
+            height: 24.0,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  '${AssetImageManager.assetPath}/icon-notification.png',
+                ),
               ),
             ),
           ),

@@ -4,12 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 TextStyle _getTextStyle(
-    double fontSize, String fontFamily, FontWeight fontWeight, Color color) {
+  double fontSize,
+  String fontFamily,
+  FontWeight fontWeight,
+  Color color,
+) {
   return GoogleFonts.poppins().copyWith(
-      fontSize: fontSize,
-      fontFamily: fontFamily,
-      fontWeight: fontWeight,
-      color: color);
+    fontSize: fontSize,
+    fontFamily: fontFamily,
+    fontWeight: fontWeight,
+    color: color,
+  );
 }
 
 TextStyle getWhiteTextStyle({
@@ -42,4 +47,16 @@ TextStyle getBlackTextStyle({
 }) {
   return _getTextStyle(
       fontSize, FontFamilyConstant.fontFamily, fontWeight, ColorManager.black);
+}
+
+TextStyle getGrey60TextStyle({
+  double fontSize = FontSizeManager.f14,
+  FontWeight fontWeight = FontWeightManager.regular,
+}) {
+  return _getTextStyle(
+    fontSize,
+    FontFamilyConstant.fontFamily,
+    fontWeight,
+    ColorManager.grey60,
+  );
 }
