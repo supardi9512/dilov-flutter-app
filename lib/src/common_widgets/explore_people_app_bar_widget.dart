@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dilov_app/src/common_widgets/logo_widget.dart';
 import 'package:dilov_app/src/features/auth/data/data_user_account_local.dart';
 import 'package:dilov_app/src/features/auth/presentation/sign_up_screen.dart';
@@ -6,7 +8,12 @@ import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
 import 'package:flutter/material.dart';
 
 class ExplorePeopleAppBarWidget extends StatelessWidget {
-  const ExplorePeopleAppBarWidget({super.key});
+  const ExplorePeopleAppBarWidget({
+    super.key,
+    this.imagePath,
+  });
+
+  final String? imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +32,14 @@ class ExplorePeopleAppBarWidget extends StatelessWidget {
           child: Container(
             width: 55.0,
             height: 55.0,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage(
-                  '${AssetImageManager.assetPath}/user.png',
-                ),
+                image: imagePath != null
+                    ? FileImage(File(imagePath!))
+                    : const AssetImage(
+                        '${AssetImageManager.assetPath}/user.png',
+                      ) as ImageProvider,
                 fit: BoxFit.cover,
               ),
             ),

@@ -119,9 +119,24 @@ class _SignUpUploadPhotoScreenState extends State<SignUpUploadPhotoScreen> {
                 const SizedBox(
                   height: 230.0,
                 ),
-                CustomButtonWidget(
-                  title: 'Update My Profile',
-                  onTap: () {},
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    if (state is AuthLoading) {
+                      return const CircularProgressIndicator();
+                    }
+                    return CustomButtonWidget(
+                      title: 'Update My Profile',
+                      onTap: () {
+                        userAccount.imageProfile = image?.path;
+                        context.read<AuthBloc>().add(
+                              RegisterAuthEvent(
+                                userAccount: userAccount,
+                                isRegister: true,
+                              ),
+                            );
+                      },
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: AppSize.s16,
