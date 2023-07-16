@@ -1,4 +1,3 @@
-import 'package:dilov_app/src/features/auth/presentation/sign_up_age_job_screen.dart';
 import 'package:dilov_app/src/features/auth/presentation/sign_up_screen.dart';
 import 'package:dilov_app/src/features/auth/presentation/sign_up_upload_photo_screen.dart';
 import 'package:dilov_app/src/features/likes_you/presentation/explore_people_screen.dart';
