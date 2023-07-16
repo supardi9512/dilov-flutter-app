@@ -1,13 +1,23 @@
 import 'package:dilov_app/src/common_widgets/banner_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_text_field_widget.dart';
+import 'package:dilov_app/src/features/auth/domain/user_account.dart';
 import 'package:dilov_app/src/features/auth/presentation/sign_up_upload_photo_screen.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class SignUpAgeJobScreen extends StatefulWidget {
   static const String routeName = '/sign-up-age-job';
-  const SignUpAgeJobScreen({super.key});
+  const SignUpAgeJobScreen({
+    super.key,
+    required this.fullname,
+    required this.email,
+    required this.password,
+  });
+
+  final String fullname;
+  final String email;
+  final String password;
 
   @override
   State<SignUpAgeJobScreen> createState() => _SignUpAgeJobScreenState();
@@ -52,9 +62,17 @@ class _SignUpAgeJobScreenState extends State<SignUpAgeJobScreen> {
               CustomButtonWidget(
                 title: 'Continue Sign Up',
                 onTap: () {
+                  UserAccount userAccount = UserAccount(
+                    fullname: widget.fullname,
+                    email: widget.email,
+                    password: widget.password,
+                    occupation: jobController.text,
+                    age: ageController.text,
+                  );
                   Navigator.pushNamed(
                     context,
                     SignUpUploadPhotoScreen.routeName,
+                    arguments: userAccount,
                   );
                 },
               ),

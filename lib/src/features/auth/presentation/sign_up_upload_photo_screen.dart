@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dilov_app/src/common_widgets/custom_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/custom_text_button_widget.dart';
+import 'package:dilov_app/src/features/auth/domain/user_account.dart';
 import 'package:dilov_app/src/features/likes_you/presentation/explore_people_screen.dart';
 import 'package:dilov_app/src/theme_manager/font_manager.dart';
 import 'package:dilov_app/src/utils/image_picker_util.dart';
@@ -33,6 +34,8 @@ class _SignUpUploadPhotoScreenState extends State<SignUpUploadPhotoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    UserAccount userAccount =
+        ModalRoute.of(context)?.settings.arguments as UserAccount;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -52,7 +55,7 @@ class _SignUpUploadPhotoScreenState extends State<SignUpUploadPhotoScreen> {
                     context: context,
                     builder: (context) {
                       return Container(
-                        padding: EdgeInsets.all(AppPadding.p24),
+                        padding: const EdgeInsets.all(AppPadding.p24),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -88,7 +91,7 @@ class _SignUpUploadPhotoScreenState extends State<SignUpUploadPhotoScreen> {
                 height: 53.0,
               ),
               Text(
-                'Andi Mania',
+                userAccount.fullname,
                 style: getWhiteTextStyle(
                   fontSize: FontSizeManager.f22,
                   fontWeight: FontWeightManager.semiBold,
@@ -98,7 +101,7 @@ class _SignUpUploadPhotoScreenState extends State<SignUpUploadPhotoScreen> {
                 height: AppSize.s4,
               ),
               Text(
-                '22, Lawyer',
+                '${userAccount.age}, ${userAccount.occupation}',
                 style: getBlack60TextStyle(),
               ),
               const SizedBox(
