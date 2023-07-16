@@ -1,4 +1,6 @@
 import 'package:dilov_app/src/common_widgets/logo_widget.dart';
+import 'package:dilov_app/src/features/auth/data/data_user_account_local.dart';
+import 'package:dilov_app/src/features/auth/presentation/sign_up_screen.dart';
 import 'package:dilov_app/src/features/likes_you/presentation/people_loved_screen.dart';
 import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +13,26 @@ class ExplorePeopleAppBarWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: 55.0,
-          height: 55.0,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(
-                '${AssetImageManager.assetPath}/user.png',
+        GestureDetector(
+          onTap: () {
+            UserAccountRegister.userAccountLogout();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              SignUpScreen.routeName,
+              (route) => false,
+            );
+          },
+          child: Container(
+            width: 55.0,
+            height: 55.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage(
+                  '${AssetImageManager.assetPath}/user.png',
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
         ),

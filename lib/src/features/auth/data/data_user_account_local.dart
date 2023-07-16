@@ -18,7 +18,7 @@ class DataUserAccountLocal {
   }
 }
 
-// cek sudah register atau belum
+// cek sudah register atau belum, dan logout
 class UserAccountRegister {
   static const String userAccountRegisterKey = 'userAccountRegister';
 
@@ -30,5 +30,10 @@ class UserAccountRegister {
   static void settUserAccountRegister(bool isRegister) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(userAccountRegisterKey, isRegister);
+  }
+
+  static void userAccountLogout() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove(userAccountRegisterKey);
   }
 }

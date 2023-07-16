@@ -1,3 +1,4 @@
+import 'package:dilov_app/src/features/auth/data/data_user_account_local.dart';
 import 'package:dilov_app/src/features/auth/presentation/sign_up_screen.dart';
 import 'package:dilov_app/src/features/auth/presentation/sign_up_upload_photo_screen.dart';
 import 'package:dilov_app/src/features/likes_you/presentation/explore_people_screen.dart';
@@ -6,10 +7,30 @@ import 'package:dilov_app/src/features/likes_you/presentation/people_profile_scr
 import 'package:dilov_app/src/theme_manager/theme_data_manager.dart';
 import 'package:flutter/material.dart';
 
-class AppScreen extends StatelessWidget {
+class AppScreen extends StatefulWidget {
   const AppScreen({
     super.key,
   });
+
+  @override
+  State<AppScreen> createState() => _AppScreenState();
+}
+
+class _AppScreenState extends State<AppScreen> {
+  bool isRegister = false;
+
+  isUserRegister() async {
+    isRegister = await UserAccountRegister.getUserAccountRegister();
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    isUserRegister();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +38,7 @@ class AppScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: getApplicationThemeData(),
-      initialRoute: SignUpScreen.routeName,
+      home: isRegister ? const ExplorePeopleScreen() : const SignUpScreen(),
       routes: {
         SignUpScreen.routeName: (context) => const SignUpScreen(),
         SignUpUploadPhotoScreen.routeName: (context) =>
