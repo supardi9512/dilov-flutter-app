@@ -1,11 +1,16 @@
 import 'package:dilov_app/src/common_widgets/glass_card_widget.dart';
-import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
+import 'package:dilov_app/src/features/likes_you/domain/user.dart';
 import 'package:dilov_app/src/theme_manager/color_manager.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class MatchCardWidget extends StatelessWidget {
-  const MatchCardWidget({super.key});
+  const MatchCardWidget({
+    super.key,
+    required this.user,
+  });
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +20,9 @@ class MatchCardWidget extends StatelessWidget {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            image: const DecorationImage(
+            image: DecorationImage(
               image: AssetImage(
-                '${AssetImageManager.assetPath}/people-love-2.png',
+                user.imagePath,
               ),
               fit: BoxFit.cover,
             ),
@@ -29,7 +34,9 @@ class MatchCardWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppSize.s70),
           ),
         ),
-        const GlassCardWidget(),
+        GlassCardWidget(
+          user: user,
+        ),
       ],
     );
   }
