@@ -1,6 +1,7 @@
 import 'package:dilov_app/src/app.dart';
 import 'package:dilov_app/src/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:dilov_app/src/features/likes_you/presentation/bloc/bloc/explore_people_bloc.dart';
+import 'package:dilov_app/src/features/likes_you/presentation/bloc/explore_people/explore_people_bloc.dart';
+import 'package:dilov_app/src/features/likes_you/presentation/bloc/people_loved/people_loved_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ExplorePeopleBloc(),
+        ),
+        BlocProvider(
+          create: (context) => PeopleLovedBloc(),
         ),
       ],
       child: const AppScreen(),

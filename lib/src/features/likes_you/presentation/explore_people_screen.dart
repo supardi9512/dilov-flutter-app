@@ -4,7 +4,8 @@ import 'package:dilov_app/src/common_widgets/explore_people_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/match_card_widget.dart';
 import 'package:dilov_app/src/features/auth/data/data_user_account_local.dart';
 import 'package:dilov_app/src/features/auth/domain/user_account.dart';
-import 'package:dilov_app/src/features/likes_you/presentation/bloc/bloc/explore_people_bloc.dart';
+import 'package:dilov_app/src/features/likes_you/presentation/bloc/explore_people/explore_people_bloc.dart';
+import 'package:dilov_app/src/features/likes_you/presentation/bloc/people_loved/people_loved_bloc.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,21 +74,37 @@ class _ExplorePeopleScreenState extends State<ExplorePeopleScreen> {
                         // tinggi menyesuaikan layar
                         Expanded(
                           child: AppinioSwiper(
-                            backgroundCardsCount: 1,
-                            swipeOptions: const AppinioSwipeOptions.all(),
-                            unlimitedUnswipe: true,
+                            direction: AppinioSwiperDirection.top,
                             controller: cardController,
-                            padding: const EdgeInsets.only(
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                            ),
+                            onSwipe: (
+                              int index,
+                              AppinioSwiperDirection direction,
+                            ) {
+                              if (direction == AppinioSwiperDirection.top) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Yey! You matched with ${users[index - 1].fullname}',
+                                    ),
+                                  ),
+                                );
+
+                                if (direction != AppinioSwiperDirection.left &&
+                                    direction != AppinioSwiperDirection.right &&
+                                    direction !=
+                                        AppinioSwiperDirection.bottom) {
+                                  context.read<PeopleLovedBloc>().add(
+                                        AddPeopleLoved(user: users[index - 1]),
+                                      );
+                                }
+                              }
+                            },
                             onEnd: () {
                               context
                                   .read<ExplorePeopleBloc>()
                                   .add(OnExplorePeopleEventCalled());
                             },
+                            padding: EdgeInsets.zero,
                             cardsCount: users.length,
                             cardsBuilder: (BuildContext context, int index) {
                               return MatchCardWidget(user: users[index]);
