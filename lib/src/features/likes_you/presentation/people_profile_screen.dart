@@ -1,8 +1,8 @@
 import 'package:dilov_app/src/common_widgets/custom_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/people_identity_widget.dart';
 import 'package:dilov_app/src/common_widgets/profile_detail_image_widget.dart';
+import 'package:dilov_app/src/features/likes_you/data/data_gallery_dummy.dart';
 import 'package:dilov_app/src/features/likes_you/domain/user.dart';
-import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -34,6 +34,8 @@ class PeopleProfileScreen extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  final gallery = dataGalleryDummy[index];
+
                   return Container(
                     width: 120.0,
                     height: 80.0,
@@ -42,16 +44,16 @@ class PeopleProfileScreen extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSize.s18),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
-                          '${AssetImageManager.assetPath}/gallery-1.png',
+                          gallery,
                         ),
                       ),
                     ),
                   );
                 },
-                itemCount: 4,
+                itemCount: dataGalleryDummy.length,
               ),
             ),
             const SizedBox(

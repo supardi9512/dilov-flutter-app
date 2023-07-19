@@ -122,11 +122,22 @@ class _SignUpUploadPhotoScreenState extends State<SignUpUploadPhotoScreen> {
                 BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {
                     if (state is AuthLoading) {
-                      return const CircularProgressIndicator();
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
                     }
                     return CustomButtonWidget(
                       title: 'Update My Profile',
                       onTap: () {
+                        if (image == null) {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('No image update.'),
+                            ),
+                          );
+                          return;
+                        }
                         userAccount.imageProfile = image?.path;
                         context.read<AuthBloc>().add(
                               RegisterAuthEvent(

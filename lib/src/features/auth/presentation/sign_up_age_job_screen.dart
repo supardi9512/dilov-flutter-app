@@ -30,7 +30,9 @@ class _SignUpAgeJobScreenState extends State<SignUpAgeJobScreen> {
   @override
   void dispose() {
     jobController.clear();
+    jobController.dispose();
     ageController.clear();
+    ageController.dispose();
     super.dispose();
   }
 
@@ -71,6 +73,7 @@ class _SignUpAgeJobScreenState extends State<SignUpAgeJobScreen> {
                 onTap: () {
                   final message = validationInput();
                   if (message != null) {
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(message),
