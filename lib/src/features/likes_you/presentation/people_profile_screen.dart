@@ -1,6 +1,7 @@
 import 'package:dilov_app/src/common_widgets/custom_button_widget.dart';
 import 'package:dilov_app/src/common_widgets/people_identity_widget.dart';
 import 'package:dilov_app/src/common_widgets/profile_detail_image_widget.dart';
+import 'package:dilov_app/src/features/likes_you/domain/user.dart';
 import 'package:dilov_app/src/theme_manager/asset_image_manager.dart';
 import 'package:dilov_app/src/theme_manager/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +12,20 @@ class PeopleProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)?.settings.arguments as User;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ProfileDetailImageWidget(),
+            ProfileDetailImageWidget(
+              imagePath: user.imagePath,
+            ),
             const SizedBox(
               height: AppSize.s30,
             ),
-            const PeopleIdentityWidget(),
+            PeopleIdentityWidget(
+              user: user,
+            ),
             Container(
               height: 80.0,
               margin: const EdgeInsets.only(
